@@ -1,0 +1,34 @@
+FIREWATCH 69 — ENVIRONMENT CHECKLIST
+====================================
+
+Use .env.example with placeholder values only. Never commit real secrets.
+
+Backend variables to consider:
+- NODE_ENV=development
+- PORT=3000
+- MONGODB_URI=
+- JWT_ACCESS_SECRET=
+- JWT_REFRESH_SECRET= (if refresh tokens are implemented)
+- WEB_ORIGIN=
+- MOBILE_DEEP_LINK_SCHEME= (if needed)
+- MAPBOX_TOKEN_SERVER_SIDE= (only if a server-side token is needed; use restricted public tokens in clients)
+- FIREBASE_PROJECT_ID=
+- FIREBASE_CLIENT_EMAIL=
+- FIREBASE_PRIVATE_KEY= (protect carefully; prefer a secret manager in production)
+- MEDIA_STORAGE_PROVIDER=
+- MEDIA_STORAGE_BUCKET=
+- MEDIA_STORAGE_ACCESS_KEY=
+- MEDIA_STORAGE_SECRET_KEY=
+- EMAIL_PROVIDER= (optional)
+- EMAIL_API_KEY= (optional)
+- LOG_LEVEL=info
+
+Important:
+- Names are illustrative; match them to the chosen libraries and deployment platform.
+- Never bundle server secrets into React or Flutter client code.
+- Public map SDK tokens must be restricted by platform/domain where supported.
+- Use separate credentials for development, test, and production.
+- Rotate exposed secrets and avoid printing them in logs.
+- Configure CORS for the exact web origins in production.
+- Store Firebase service-account credentials securely; do not ship private credentials in mobile apps.
+- Keep .env files out of version control; commit .env.example instead.

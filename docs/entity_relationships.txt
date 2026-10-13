@@ -1,0 +1,31 @@
+FIREWATCH 69 — ENTITY RELATIONSHIPS
+===================================
+
+Proposed relationships:
+- User 1-to-many Incident: reportedBy (optional for guest/phone/walk-in reports)
+- Incident 1-to-zero-or-one BlotterRecord: confirm official workflow and numbering rules
+- Incident 1-to-many Assignment: preserves dispatch/reassignment history
+- Team 1-to-many User: team membership; use a separate membership model if history matters
+- Assignment many-to-one Incident
+- Assignment many-to-one Team (optional if individuals are assigned)
+- Assignment many-to-many User: responders participating in an assignment
+- Incident 1-to-many IncidentEvent
+- Incident 1-to-many IncidentAttachment
+- BlotterRecord 1-to-many IncidentAttachment (optional link)
+- FireHydrant 1-to-many HydrantInspection
+- User 1-to-many Notification
+- User 1-to-many ActivityLog as actor (actor can be system/unknown in limited cases)
+- EvacuationCenter is independently stored with a GeoJSON location
+
+Mongoose approach:
+- Use ObjectId references for independently managed entities and use populate() for selected reads.
+- Embed small, bounded data that is almost always read/updated with its parent.
+- Avoid unbounded arrays such as all GPS history or all incident events inside a single document.
+- Add database-level unique indexes where uniqueness is required.
+- MongoDB references and populate() do not provide SQL-style foreign-key enforcement; validate references and handle deleted/archived records in application logic.
+- Use transactions for multi-document changes that must be atomic, when deployed on a MongoDB topology that supports transactions.
+
+Geospatial:
+- Store GeoJSON Point coordinates as [longitude, latitude].
+- Create 2dsphere indexes on incident.location, fireHydrant.location, evacuationCenter.location, and any responder-location collection used for proximity queries.
+- Consider a separate ResponderLocation collection for frequent GPS updates, with a retention/TTL strategy for historical pings.

@@ -1,0 +1,15 @@
+---
+description: Mongoose model conventions aligned with docs/model
+globs: server/**/models/**,docs/model/**
+alwaysApply: false
+---
+
+# Mongoose models
+
+- One `.txt` spec per entity under `docs/model/` — treat as the planning reference until schemas exist in `server/src/models/`.
+- Use separate collections for entities with independent lifecycles and unbounded history (incidents, events, assignments, inspections, notifications, activity logs).
+- **References**: ObjectId refs + `populate()` for related reads; embed only small, bounded data read/written with the parent.
+- Avoid unbounded arrays (all GPS pings, all events) inside a single document; consider `ResponderLocation` with retention/TTL for frequent GPS updates.
+- **Indexes**: Unique indexes where business rules require uniqueness; `2dsphere` on location fields per `docs/entity_relationships.txt`.
+- **Validation**: Schema validation + server validators (e.g. Zod); client validation is not sufficient.
+- **Transactions**: Use for multi-document atomic updates when the deployment supports MongoDB transactions.

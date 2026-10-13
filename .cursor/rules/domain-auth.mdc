@@ -1,0 +1,14 @@
+---
+description: Roles, permissions, and document access control
+globs: server/**/middleware/**,server/**/routes/**,server/**/*auth*,**/*permission*,docs/permissions_matrix.txt,docs/document_acl.txt
+alwaysApply: false
+---
+
+# Auth and authorization
+
+- **Roles (confirm with stakeholders)**: `system_admin`, `barangay_official`, `coordinator`, `responder`, `registered_resident`, `guest_resident` — see `docs/document_acl.txt`.
+- **Matrix**: Implement capabilities from `docs/permissions_matrix.txt`. Default **deny**; “Public” means only explicitly approved fields/endpoints.
+- **Principles**: Authenticate on every protected route; authorize action + resource (ownership, assignment scope, role). Separate authN from authZ.
+- **Sensitive data**: Incident details, contact info, media, and live responder GPS stay private unless policy allows; use short-lived signed URLs or authenticated media endpoints.
+- **Guests**: Rate-limit SOS/report endpoints; validated guest sessions; anti-abuse controls — do not treat guest flows as fully trusted.
+- **Logging**: Never log plaintext passwords, tokens, or API secrets; log sensitive admin actions. See open questions in `docs/document_acl.txt` before hard-coding severity/blotter/assign/export rules.

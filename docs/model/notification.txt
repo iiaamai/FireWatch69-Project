@@ -1,0 +1,20 @@
+# Notification Model
+
+Purpose:
+Stores in-app notifications and delivery state. Push delivery is handled by Firebase Cloud Messaging (FCM) where configured.
+
+Suggested fields:
+- _id: ObjectId
+- recipient: reference to User, or a controlled guest token/session identifier
+- type: string/enum
+- title: string
+- body: string
+- relatedIncident: optional reference to Incident
+- readAt: optional date
+- channels: array, e.g. in_app, push
+- deliveryStatus: optional enum: pending, sent, failed
+- createdAt, updatedAt: timestamps
+
+Notes:
+- Do not store FCM private credentials in the database.
+- Avoid exposing private incident details in lock-screen notifications.

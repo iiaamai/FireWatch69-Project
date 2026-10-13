@@ -1,0 +1,58 @@
+FIREWATCH 69 — FEATURE INVENTORY
+=================================
+
+A. Barangay Officials Web Application
+- Login and account/role management
+- Dashboard: active incidents, response metrics, responders, map
+- Incident & Blotter Management: create, review, assess, assign, update, resolve, and document incidents
+- Responder tracking and assignment monitoring
+- Team management
+- Evacuation center management
+- Fire hydrant management: location, status, verification, inspection history
+- Incident history and search/filter
+- User management
+- In-app notifications and real-time alerts
+- Activity logs
+- Analytics and reports
+- Incident heatmap and high-risk-area analytics
+- Map/location monitoring with selectable layers
+- Account/profile
+
+B. Emergency Responder Mobile App
+- Login and profile
+- Assigned incidents and incident details
+- Navigation/GPS and map
+- Nearby fire hydrant pins and status
+- Team coordination
+- Push/in-app notifications
+- Response status updates
+- Reinforcement requests
+
+C. Registered Resident Mobile App
+- Login/account
+- Home and nearby alerts
+- Incident/SOS reporting with location
+- Map showing permitted incidents, evacuation centers, and public hydrants
+- Permitted team/response progress tracking
+- Report details and own report history
+- Alerts and profile
+
+D. Guest Resident Mobile App
+- Guest access/verification
+- Incident/SOS reporting with location and abuse controls
+- Public map and permitted hydrant/evacuation information
+- Permitted response updates
+- Alerts and report details where guest session permits
+
+E. Shared services
+- Authentication and authorization
+- Central incident and blotter data
+- Map/geolocation service
+- Responder location service
+- Event/history service
+- Notification service
+- Analytics service
+
+Scope advice:
+- Implement a minimum viable end-to-end reporting and dispatch workflow first.
+- Confirm live video, guest verification, public responder tracking, and advanced risk analytics before committing to them as mandatory features.

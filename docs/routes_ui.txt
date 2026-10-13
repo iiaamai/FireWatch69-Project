@@ -1,0 +1,65 @@
+FIREWATCH 69 — ROUTES AND UI MAP (PROPOSAL)
+============================================
+
+Web (React) route ideas:
+- /login
+- /dashboard
+- /incidents
+- /incidents/:incidentId
+- /blotter
+- /assignments
+- /responders
+- /teams
+- /evacuation-centers
+- /hydrants
+- /incident-history
+- /users
+- /notifications
+- /activity-logs
+- /analytics
+- /heatmap
+- /account
+
+Mobile (Flutter) screen ideas:
+- Login / guest entry
+- Home
+- Report incident / SOS confirmation
+- Map
+- Incident/report details
+- Assigned incidents (responder)
+- Navigation and hydrant details (responder)
+- Team / reinforcement
+- Alerts
+- My reports (registered resident)
+- Profile and permissions
+
+API route groups (illustrative; version under /api/v1):
+- POST /auth/login
+- POST /auth/refresh (if refresh-token design is adopted)
+- POST /auth/logout
+- GET/POST /incidents
+- GET/PATCH /incidents/:id
+- POST /incidents/:id/verify
+- POST /incidents/:id/assignments
+- PATCH /assignments/:id/status
+- GET /incidents/:id/events
+- GET/POST /incidents/:id/blotter
+- GET/POST /hydrants
+- GET/PATCH /hydrants/:id
+- GET/POST /hydrants/:id/inspections
+- GET/POST /evacuation-centers
+- GET/PATCH /evacuation-centers/:id
+- GET/POST /teams
+- GET/PATCH /teams/:id
+- GET/PATCH /users (restrict by role)
+- GET /analytics/summary
+- GET /analytics/heatmap
+- GET/POST /notifications
+- GET /activity-logs (restrict by role)
+- POST /responders/location
+
+Notes:
+- These are design suggestions, not implemented endpoints.
+- Validate authorization, pagination, filtering, request schemas, and error response formats.
+- Prefer action endpoints for meaningful workflow transitions instead of allowing arbitrary status patches.
+- Guest routes should be separately rate-limited and should not expose privileged data.

@@ -1,0 +1,26 @@
+FIREWATCH 69 — SEED DATA PLAN
+=============================
+
+Purpose:
+Provide safe, clearly fictional development data for local development and demonstrations.
+
+Suggested seed order:
+1. Roles/permissions (if stored as data)
+2. System admin test account
+3. Barangay official/coordinator test accounts
+4. Responder test accounts
+5. Teams and team membership
+6. Fictional evacuation centers
+7. Fictional fire hydrants
+8. Sample incidents and optional blotter records
+9. Assignments and incident events
+10. Notifications and activity logs if needed for UI demos
+
+Seed rules:
+- Use fake names, emails, phone numbers, and non-production passwords.
+- Hash passwords using the chosen password-hashing library before insertion.
+- Make seeds repeatable/idempotent, e.g. upsert by a stable seed key.
+- Clearly label fictional hydrant and evacuation locations; do not imply they are real.
+- Do not seed fabricated historical statistics as real research data.
+- Keep real barangay data in a separately reviewed import process with permission and provenance.
+- Provide a development-only command and block seed execution in production unless explicitly intended.

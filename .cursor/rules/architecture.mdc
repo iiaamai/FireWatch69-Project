@@ -1,0 +1,16 @@
+---
+description: FireWatch API, data, and incident architecture principles
+alwaysApply: true
+---
+
+# Architecture
+
+- All clients share one backend API and central database; **enforce authorization in the API** — frontend visibility is not security (`docs/development_notes.txt`).
+- Mongoose schemas with validation, indexes, and ObjectId references; use `populate()` for reads; no SQL-style FK enforcement — validate refs in app logic (`docs/entity_relationships.txt`).
+- GeoJSON Point coordinates as **[longitude, latitude]**; `2dsphere` indexes on incident, hydrant, evacuation, and responder-location collections used for proximity.
+- Store media metadata in MongoDB; keep binaries in object storage or a media service with signed/authenticated access (`docs/document_acl.txt`).
+- Preserve history with **append-only `IncidentEvent`** entries; Socket.IO is a live update channel, not the permanent source of truth.
+- Incident lifecycle (validate with stakeholders): Submitted → Under review → Verified → Dispatched → Responding/En route → On scene → Resolved → Closed; **Rejected** with reason; exceptional paths (reopen, reassign, reinforcement, severity change) need actor, server timestamp, and audit fields (`docs/lifecycle.txt`).
+- Do not present unverified hydrant status, evacuation availability, or risk analytics as confirmed facts.
+- Use server timestamps for authoritative event time; do not derive official response-time metrics from client clocks alone.
+- Use environment variables for secrets and service URLs; consistent error responses and separate dev/test/prod environments.

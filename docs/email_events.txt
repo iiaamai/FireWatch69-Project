@@ -1,0 +1,39 @@
+FIREWATCH 69 — EMAIL / EVENT NOTIFICATION NOTES
+==============================================
+
+Terminology:
+- Domain event: a meaningful system occurrence, e.g. IncidentSubmitted or AssignmentCreated.
+- In-app notification: an item shown in the app.
+- Push notification: mobile alert delivered through FCM.
+- Email: optional channel; not assumed required unless project stakeholders request it.
+
+Suggested events:
+- IncidentSubmitted
+- IncidentNeedsReview
+- IncidentVerified
+- SeverityChanged
+- AssignmentCreated
+- AssignmentReassigned
+- ResponderAccepted
+- ResponderEnRoute
+- ResponderArrived
+- ReinforcementRequested
+- IncidentResolved
+- IncidentReopened
+- HydrantStatusChanged
+- EvacuationCenterStatusChanged
+
+Suggested event flow:
+1. Validate request and permissions.
+2. Persist the business change in MongoDB.
+3. Record an IncidentEvent or relevant audit event.
+4. Emit a Socket.IO event to authorized connected clients.
+5. Queue or send FCM push notification if the event and recipient require it.
+6. Optionally send email if an email provider and policy are configured.
+7. Track delivery failures without rolling back an already-committed incident update.
+
+Implementation notes:
+- For reliable event delivery, consider a transactional outbox pattern or a retryable event queue.
+- Do not emit sensitive details to public rooms.
+- Use authenticated Socket.IO connections and server-side room membership.
+- Email provider, templates, retry policy, and event subscription rules remain undecided.

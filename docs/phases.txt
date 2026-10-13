@@ -1,0 +1,53 @@
+FIREWATCH 69 — DEVELOPMENT PHASES
+==================================
+
+Phase 0 — Validation and setup
+- Confirm stakeholders, official workflow, severity definitions, blotter requirements, and project boundary (Barangay 69).
+- Confirm data availability for historical incidents, hydrants, evacuation centers, and risk factors.
+- Decide whether live video and resident-facing responder tracking are required.
+- Create repository, coding conventions, environments, and initial diagrams.
+
+Phase 1 — Foundation
+- Set up React + Vite web app, Express API, Flutter app, MongoDB/Mongoose.
+- Configure error handling, logging, input validation, CORS, environment variables, and tests.
+- Create User model, authentication, role/permission middleware.
+
+Phase 2 — Incident core
+- Implement Incident, BlotterRecord, IncidentEvent, Team, Assignment.
+- Build incident creation, review, severity assessment, assignment, status transitions, and history.
+- Test end-to-end from resident/staff report to responder update.
+
+Phase 3 — Administrative web
+- Dashboard and incident queue
+- Team and user management
+- Blotter/documentation views
+- Evacuation center and hydrant management
+- Activity logs and initial reports
+
+Phase 4 — Responder mobile
+- Login, assigned incidents, details, response status
+- GPS permission and location update policy
+- Map layers and hydrant navigation handoff
+- Team coordination and reinforcement request
+
+Phase 5 — Resident mobile experiences
+- Registered resident reporting and own reports
+- Guest reporting and abuse prevention
+- Public map layers and permitted status updates
+- Alerts and notifications
+
+Phase 6 — Real-time and analytics
+- Socket.IO events and authorized rooms
+- FCM push notifications
+- Incident history charts and map heatmap
+- Risk analytics only after data quality and methodology are agreed
+
+Phase 7 — Testing and deployment
+- Unit/integration/system/usability/security testing
+- Permission tests for each role
+- GPS and low-connectivity testing
+- Backup/restore and monitoring
+- User acceptance testing and documentation
+- Deploy to a chosen host with production secrets and access controls
+
+Deliver in small increments. Each phase should finish with a working, testable feature rather than only UI mockups.

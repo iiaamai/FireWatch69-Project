@@ -1,0 +1,16 @@
+# Hydrant Inspection Model
+
+Purpose:
+Optional separate history of fire hydrant inspections and verification events.
+
+Suggested fields:
+- _id: ObjectId
+- hydrant: reference to FireHydrant
+- inspectedBy: reference to User
+- statusObserved: enum: operational, out_of_service, unknown
+- notes: string, optional
+- evidenceAttachments: array of attachment metadata
+- inspectedAt: date
+- createdAt, updatedAt: timestamps
+
+Use this collection if the project must preserve multiple inspections over time rather than keeping only the latest verification on FireHydrant.

@@ -1,0 +1,22 @@
+# User Model
+
+Purpose:
+Represents system accounts for barangay officials, authorized staff, responders, registered residents, and guest-access identities if guest sessions need persistence.
+
+Suggested fields:
+- _id: ObjectId
+- fullName: string
+- email: string, optional depending on account type
+- phoneNumber: string, optional
+- passwordHash: string; never store plaintext passwords
+- role: enum: system_admin, barangay_official, coordinator, responder, registered_resident
+- accountStatus: enum: active, pending, suspended, disabled
+- departmentOrTeam: optional reference to Team or department identifier
+- profilePhotoUrl: optional string
+- notificationPreferences: object
+- createdAt, updatedAt: timestamps
+
+Notes:
+- Guests can be handled through limited guest sessions/tokens rather than permanent User records.
+- Enforce permissions in the backend; hiding UI controls is not authorization.
+- Add unique indexes for normalized email/phone where appropriate and permitted.

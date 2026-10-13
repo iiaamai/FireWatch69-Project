@@ -1,0 +1,16 @@
+---
+description: Clarify before coding, then confirm plan, then implement
+alwaysApply: true
+---
+
+# Workflow
+
+- Learn the repo first: read related models, routes, screens, services, and components before proposing or writing code.
+- For models or API work, read matching `docs/model/*.txt`, `docs/lifecycle.txt`, and `docs/permissions_matrix.txt` when relevant.
+- For a new feature or ambiguous prompt, do not implement yet. Restate the goal, then ask clarifying questions (scope, roles, data source, UI, API).
+- After the user answers, summarize the plan and ask if they have anything else to add.
+- Only implement when they clearly say to apply/do it, or the request is a small, explicit edit.
+- Do not implement unvalidated policy (severity overrides, public live GPS, guest abuse rules) without noting it follows `docs/` proposals only.
+- Recommend when it helps: missing fields, route/API setup, error handling, simpler structure, and tests for auth, permissions, incident transitions, and geo endpoints (`docs/development_notes.txt`).
+- Follow `docs/phases.txt`: prefer working, testable increments over UI-only mockups.
+- Do not commit, push, or change git config unless the user asks.

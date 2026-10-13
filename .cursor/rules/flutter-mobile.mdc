@@ -1,0 +1,14 @@
+---
+description: Flutter mobile apps (resident/guest and responder)
+globs: mobile/**/*
+alwaysApply: false
+---
+
+# Flutter mobile
+
+- **Apps**: `mobile/resident_mobile/` — registered resident and guest entry (docs/features.txt C + D); `mobile/responder_mobile/` — responder dispatch and field updates (section B).
+- **Org / IDs**: `ph.barangay69.firewatch` (`resident_mobile` / `responder_mobile` application IDs from `flutter create`).
+- **Platforms**: Android, iOS, and Web generated for both; add features per `docs/phases.txt` (Phase 4 responder, Phase 5 resident/guest).
+- **API**: Same backend as web (`server/`); enforce permissions server-side (`docs/permissions_matrix.txt`). Mapbox and FCM only after requirements are confirmed (`docs/tech_stack.txt`).
+- **Screens (proposal)**: `docs/routes_ui.txt` mobile section — login/guest entry, home, report/SOS, map, assigned incidents (responder), alerts, profile.
+- Match each app’s existing Flutter structure; no shared package until explicitly added. Dart only on mobile unless the user changes stack policy.

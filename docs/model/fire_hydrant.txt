@@ -1,0 +1,27 @@
+# Fire Hydrant Model
+
+Purpose:
+Stores mapped fire hydrant locations and verification/operational information.
+
+Suggested fields:
+- _id: ObjectId
+- hydrantCode: string, unique
+- locationName: string, optional
+- location: GeoJSON Point { type: "Point", coordinates: [longitude, latitude] }
+- addressText: optional string
+- status: enum: operational, out_of_service, unknown
+- accessNotes: optional string
+- lastVerifiedAt: optional date
+- lastVerifiedBy: optional reference to User
+- createdBy: reference to User
+- createdAt, updatedAt: timestamps
+
+Indexes:
+- unique hydrantCode
+- 2dsphere index on location
+- index on status
+
+Notes:
+- Hydrant coordinates and operational status must be verified with a reliable source or field survey.
+- Keep inspection history in a separate HydrantInspection collection if inspection records need to be retained.
+- Public visibility of hydrant locations should be decided with the barangay/BFP.

@@ -1,0 +1,26 @@
+FIREWATCH 69 — INCIDENT LIFECYCLE
+==================================
+
+Proposed workflow (must be validated with barangay/BFP stakeholders):
+1. Submitted: report received through app or encoded by staff from phone/walk-in.
+2. Under review: authorized staff checks information and possible duplicates.
+3. Verified: incident accepted as valid for response.
+4. Dispatched: responder/team assignment has been created.
+5. Responding / En route: assigned responder is moving toward the incident.
+6. On scene: responder reports arrival.
+7. Resolved: immediate response is reported complete; resolution details are recorded.
+8. Closed: authorized staff completes required documentation and closes the record.
+9. Rejected: authorized staff rejects a duplicate, invalid, or out-of-scope report with a reason.
+
+Possible exceptional transitions:
+- Reopen a resolved/closed incident only through an authorized workflow.
+- Reassign an incident while preserving the prior assignment history.
+- Request reinforcement without losing the original assignment.
+- Update severity with actor, timestamp, previous value, new value, and reason.
+
+Rules:
+- Do not assume that every incident must have the same workflow or a formal blotter record.
+- Define who can perform each transition and which fields are mandatory.
+- Record transitions as append-only IncidentEvent entries.
+- Use server timestamps as the authoritative event time; retain reported/captured time separately when useful.
+- Do not derive official response-time metrics from client device clocks alone.

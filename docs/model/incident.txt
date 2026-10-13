@@ -1,0 +1,31 @@
+# Incident Model
+
+Purpose:
+Central record for reported emergencies and incidents. The Incident & Blotter Management module uses this as the primary operational record.
+
+Suggested fields:
+- _id: ObjectId
+- incidentCode: string, unique human-readable identifier
+- reportSource: enum: resident_app, guest_app, staff_encoded, phone, walk_in, other
+- reportedBy: optional reference to User
+- incidentType: string or controlled enum
+- description: string
+- severity: enum: low, medium, high, critical; validate the classification process with barangay/BFP stakeholders
+- status: enum: submitted, under_review, verified, dispatched, responding, on_scene, resolved, closed, rejected
+- location: GeoJSON Point { type: "Point", coordinates: [longitude, latitude] }
+- addressText: optional string
+- peopleAffectedCount: optional number
+- media: array of attachment metadata, not large binary files
+- currentAssignment: optional reference to Assignment
+- blotterRecord: optional reference to BlotterRecord
+- reportedAt, createdAt, updatedAt: timestamps
+- resolvedAt: optional date
+
+Indexes:
+- unique incidentCode
+- 2dsphere index on location
+- indexes on status, severity, reportedAt, incidentType
+
+Notes:
+- Store status transitions in a separate IncidentEvent collection for audit/history.
+- Treat the severity levels and workflow as proposed until officially validated.

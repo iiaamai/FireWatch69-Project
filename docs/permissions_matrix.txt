@@ -1,0 +1,21 @@
+FIREWATCH 69 — PERMISSIONS MATRIX (PROPOSAL)
+===========================================
+
+Legend: Full = create/read/update as allowed by policy; Assigned = only assigned work; Own = own records; Public = explicitly approved public fields; Limited = restricted workflow.
+
+Capability | System Admin | Barangay Official | Coordinator | Responder | Registered Resident | Guest
+Manage accounts/roles | Full | Limited | No | No | Own profile | Guest session only
+View incident queue | Full | Full | Full | Assigned | Own/public subset | Own/public subset
+Create/encode incident | Full | Full | Limited | Limited/confirm | Own report | Limited report
+Set/override severity | Policy-defined | Policy-defined | Policy-defined | No by default | No | No
+Manage blotter | Full by policy | Full by policy | Limited | Read assigned subset | No | No
+Create/reassign assignment | Technical/admin policy | Policy-defined | Full if authorized | No | No | No
+Update response status | Audit/support | Oversight | Oversight | Assigned incidents | No | No
+View live responder GPS | Restricted | Authorized | Authorized | Team/assignment scope | Not by default | No
+Manage hydrants | Full | Authorized | Optional | Read/verify if permitted | Public fields only if approved | Public fields only if approved
+Manage evacuation centers | Full | Authorized | Authorized if delegated | Read | Public fields | Public fields
+View analytics/export | Full by policy | Authorized | Authorized | Limited | Public summary only if approved | Public summary only if approved
+View activity logs | Restricted | Authorized | Limited | No by default | No | No
+Manage own profile | Yes | Yes | Yes | Yes | Yes | Session only
+
+This is a starting point, not a final policy. Confirm actual barangay hierarchy and duties, data privacy requirements, and BFP integration permissions before coding.

@@ -1,0 +1,19 @@
+# Team Model
+
+Purpose:
+Represents response teams and their membership.
+
+Suggested fields:
+- _id: ObjectId
+- teamName: string
+- teamCode: string, optional
+- department: string, optional
+- leader: reference to User
+- members: array of references to User
+- availability: enum: available, assigned, unavailable
+- createdBy: reference to User
+- createdAt, updatedAt: timestamps
+
+Notes:
+- If membership changes frequently or needs detailed history, use a separate TeamMembership collection instead of only an embedded members array.
+- Validate actual team names, leadership, and availability workflow with barangay stakeholders.

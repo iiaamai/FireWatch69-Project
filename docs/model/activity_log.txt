@@ -1,0 +1,18 @@
+# Activity Log Model
+
+Purpose:
+Records significant administrative and security-relevant actions.
+
+Suggested fields:
+- _id: ObjectId
+- actor: optional reference to User
+- action: string
+- entityType: string
+- entityId: string/ObjectId
+- summary: string
+- requestId: optional string
+- occurredAt: date
+- metadata: limited object; exclude passwords, tokens, and unnecessary sensitive data
+
+Notes:
+- Apply retention and access policies. Do not treat activity logs as a substitute for domain event history.

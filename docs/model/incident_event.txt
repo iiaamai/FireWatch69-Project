@@ -1,0 +1,20 @@
+# Incident Event Model
+
+Purpose:
+Append-only history of important incident and dispatch events for accountability, timeline views, and reporting.
+
+Suggested fields:
+- _id: ObjectId
+- incident: reference to Incident
+- assignment: optional reference to Assignment
+- eventType: enum/string such as submitted, severity_changed, verified, assigned, status_changed, note_added, resolved, reopened
+- previousValue: optional object
+- newValue: optional object
+- note: optional string
+- actor: optional reference to User or system actor identifier
+- occurredAt: date
+- createdAt: timestamp
+
+Notes:
+- Prefer appending events instead of silently replacing past state.
+- Restrict editing/deletion to authorized exceptional workflows and retain auditability.

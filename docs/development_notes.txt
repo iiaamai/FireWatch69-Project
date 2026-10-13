@@ -1,0 +1,56 @@
+FIREWATCH 69 — DEVELOPMENT NOTES
+================================
+
+Project:
+An Integrated Real-Time Fire Incident Reporting and High-Risk Area Analytics System for Barangay 69, Tondo, Manila.
+
+Proposed stack:
+- Language: mostly JavaScript (ES modules) on web and API; TypeScript is not planned.
+- Web: ReactJS + JavaScript (ES modules) + Vite
+- API: Node.js + ExpressJS (JavaScript, ES modules)
+- Mobile: Flutter + Dart
+- Database: MongoDB + Mongoose
+- Real-time: Socket.IO
+- Maps: Mapbox (confirm Flutter/web SDK needs and pricing before finalizing)
+- Push notifications: Firebase Cloud Messaging (FCM)
+- API testing: Postman
+- Version control: Git + GitHub
+
+Architecture principles:
+1. All clients use the same backend API and central database.
+2. Enforce authorization in the API; frontend visibility alone is not security.
+3. Use Mongoose schemas, validation, indexes, and references where useful.
+4. Use GeoJSON Point coordinates in [longitude, latitude] order and 2dsphere indexes for proximity queries.
+5. Keep media files outside MongoDB; store metadata and secure storage references.
+6. Preserve incident and assignment history through append-only events.
+7. Treat Socket.IO as a live update channel, not the permanent source of truth.
+8. Validate incident workflow, severity rules, blotter requirements, and organizational permissions with the barangay/BFP.
+9. Build a minimal end-to-end incident workflow before implementing every module.
+10. Never represent unverified hydrant status, evacuation availability, or risk factors as confirmed facts.
+
+Suggested repository layout:
+- client/              React web app (officials)
+- mobile/
+  - resident_mobile/   Flutter — registered resident and guest flows
+  - responder_mobile/  Flutter — emergency responder
+- server/
+  - src/
+    - config/
+    - middleware/
+    - models/
+    - routes/
+    - controllers/
+    - services/
+    - sockets/
+    - validators/
+    - utils/
+  - tests/
+- docs/
+- .env.example
+
+Development conventions:
+- Use environment variables for secrets and service URLs.
+- Add linting/formatting and consistent error responses.
+- Use database migrations/seed scripts or versioned seed data as appropriate.
+- Add automated tests for authentication, permissions, incident transitions, and location endpoints.
+- Keep separate development, test, and production environments.

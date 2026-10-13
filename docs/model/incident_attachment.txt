@@ -1,0 +1,22 @@
+# Incident Attachment Metadata Model
+
+Purpose:
+Stores metadata for photos, video, and documents associated with an incident or blotter record. Store the actual files in object storage or a dedicated media service.
+
+Suggested fields:
+- _id: ObjectId
+- incident: reference to Incident
+- blotterRecord: optional reference to BlotterRecord
+- uploadedBy: optional reference to User
+- storageKey or secureUrl: string
+- mediaType: enum: image, video, document, other
+- mimeType: string
+- fileSizeBytes: number
+- capturedAt: optional date
+- uploadedAt: date
+- reviewStatus: optional enum: pending, approved, rejected
+- createdAt, updatedAt: timestamps
+
+Notes:
+- Use private storage and short-lived access links for sensitive media.
+- Validate file type/size and malware-scan uploads where practical.

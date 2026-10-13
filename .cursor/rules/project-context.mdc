@@ -1,0 +1,15 @@
+---
+description: FireWatch 69 structure, stack, and boundaries
+alwaysApply: true
+---
+
+# Project
+
+- **FireWatch 69**: Integrated real-time fire incident reporting and high-risk area analytics for Barangay 69, Tondo, Manila — barangay officials (web), responders and residents/guests (mobile).
+- **Planning source**: `docs/` holds architecture proposals. Validate workflow, permissions, blotter rules, severity, hydrant data, and public visibility with barangay/BFP stakeholders before treating docs as policy (`docs/README.txt`).
+- **Stack (target)**: JavaScript (ES modules) — React + Vite (`client/`), Node + Express (`server/`), MongoDB + Mongoose, Flutter mobile, Socket.IO, Mapbox, FCM, Zod or equivalent server-side validation (`docs/tech_stack.txt`). TypeScript is not planned.
+- **In repo today**: `client/` (React + Vite, `.jsx`), `server/` (Express MVRC skeleton), `mobile/resident_mobile/` and `mobile/responder_mobile/` (Flutter scaffolds), `docs/` planning package — follow `docs/development_notes.txt` for layout and conventions.
+- **Features**: Officials web (dashboard, incidents, blotter, teams, hydrants, evacuation, analytics); responder dispatch/GPS; resident/guest reporting and public map layers — see `docs/features.txt`.
+- **Phasing**: Ship MVP report → review → dispatch → responder update before full admin/analytics (`docs/phases.txt`, Phases 1–2 first).
+- Match existing code patterns in each folder. No drive-by refactors or extra markdown unless asked.
+- Do not edit `client/node_modules/`, generated artifacts, or secrets (`.env`). Do not commit, push, or change git config unless the user asks.

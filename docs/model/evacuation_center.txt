@@ -1,0 +1,24 @@
+# Evacuation Center Model
+
+Purpose:
+Stores evacuation center details and location.
+
+Suggested fields:
+- _id: ObjectId
+- centerName: string
+- location: GeoJSON Point { type: "Point", coordinates: [longitude, latitude] }
+- addressText: string
+- capacity: optional number
+- availabilityStatus: enum: available, limited, full, closed, unknown
+- contactDetails: optional object
+- photos: array of attachment metadata
+- lastVerifiedAt: optional date
+- createdBy: reference to User
+- createdAt, updatedAt: timestamps
+
+Indexes:
+- 2dsphere index on location
+- index on availabilityStatus
+
+Notes:
+- Keep capacity and availability current only when there is a reliable update process.

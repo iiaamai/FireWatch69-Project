@@ -1,0 +1,17 @@
+{
+  "dart.projectSearchPaths": [
+    "mobile/resident_mobile",
+    "mobile/responder_mobile"
+  ],
+  "dart.analysisExcludedFolders": [
+    "client/node_modules",
+    "server/node_modules",
+    "mobile/resident_mobile/build",
+    "mobile/responder_mobile/build"
+  ],
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.dart_tool/**": true,
+    "**/build/**": true
+  }
+}

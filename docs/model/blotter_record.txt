@@ -1,0 +1,21 @@
+# Blotter Record Model
+
+Purpose:
+Stores official blotter documentation associated with an incident when the barangay's official process requires a blotter record.
+
+Suggested fields:
+- _id: ObjectId
+- blotterNumber: string, unique if the barangay confirms a numbering scheme
+- incident: reference to Incident
+- recordedBy: reference to User
+- narrative: string
+- involvedPersons: array of permitted person details; minimize sensitive personal data
+- actionTaken: string
+- recordedAt: date
+- attachments: array of attachment metadata
+- createdAt, updatedAt: timestamps
+
+Important:
+- Confirm with barangay staff whether every incident requires a formal blotter and whether an official form/numbering scheme exists.
+- If an incident can exist without a formal blotter, keep the reference optional.
+- Preserve revisions/audit events for official record changes.

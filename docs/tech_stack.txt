@@ -1,0 +1,37 @@
+FIREWATCH 69 — TECH STACK
+=========================
+
+Language:
+- Mostly JavaScript (ES modules) for web and API. TypeScript is not planned for this project.
+
+Recommended stack:
+- Web frontend: ReactJS + JavaScript (ES modules) + Vite
+- Styling: Tailwind CSS (optional)
+- Backend runtime: Node.js (JavaScript, ES modules)
+- Backend framework: ExpressJS
+- Database: MongoDB
+- ODM/model layer: Mongoose
+- Mobile apps: Flutter + Dart
+- Real-time events: Socket.IO
+- Mapping: Mapbox web and Flutter SDKs; validate SDK, navigation, and pricing requirements
+- Push notifications: Firebase Cloud Messaging
+- Charts: Recharts (web)
+- Input validation: Zod or equivalent; use server-side validation regardless of client validation
+- API testing: Postman
+- Version control: Git + GitHub
+- Media: object storage or media service; keep binaries out of MongoDB where practical
+- Hosting: choose after budget, connectivity, and deployment requirements are known
+
+Why MongoDB + Mongoose:
+- Mongoose schemas provide structure, defaults, validation, middleware, and references.
+- ObjectId references and populate() help retrieve related entities.
+- MongoDB remains document-oriented; references/populate do not enforce SQL-style foreign keys automatically.
+- Use separate collections for records with independent lifecycles and unbounded history.
+- Use GeoJSON and 2dsphere indexes for location queries.
+- Use transactions only when multi-document atomicity is required and the MongoDB deployment supports them.
+
+Important design choices:
+- Decide whether to build one Flutter app with role-based experiences or separate app packages; a single codebase can reduce duplication, but guest/resident/responder workflows need careful navigation and access separation.
+- Confirm Mapbox coverage, pricing, token restrictions, navigation requirements, and alternatives before locking the map provider.
+- FCM covers push delivery, while Socket.IO covers active real-time connections.
+- Choose email delivery only if email is a confirmed requirement.

@@ -1,0 +1,21 @@
+# Assignment Model
+
+Purpose:
+Tracks dispatching one or more responder teams or responders to an incident.
+
+Suggested fields:
+- _id: ObjectId
+- incident: reference to Incident
+- team: reference to Team, optional if assigned to individuals
+- responders: array of references to User
+- assignedBy: reference to User
+- status: enum: assigned, accepted, en_route, on_scene, completed, cancelled
+- assignedAt, acceptedAt, enRouteAt, arrivedAt, completedAt: optional dates
+- destinationLocation: optional GeoJSON Point
+- reinforcementRequested: boolean
+- reinforcementNotes: optional string
+- createdAt, updatedAt: timestamps
+
+Notes:
+- Keep assignment history rather than overwriting the only assignment when reassigned.
+- Define who may assign/reassign and who may mark arrival/completion before implementation.

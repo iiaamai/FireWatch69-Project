@@ -1,0 +1,36 @@
+FIREWATCH 69 — DOCUMENT / ACCESS CONTROL NOTES
+==============================================
+
+Purpose:
+Define access boundaries for incident records, media, responder locations, and administration.
+
+Suggested role definitions (confirm with stakeholders):
+- system_admin: technical configuration and account/role administration
+- barangay_official: incident/blotter oversight, records, reports, and permitted management tasks
+- coordinator: authorized incident assessment, dispatch, and escalation
+- responder: assigned incident details, team coordination, response status, and authorized GPS features
+- registered_resident: submit reports and view own report status plus public alerts
+- guest_resident: submit a limited report through a validated guest session and view public information
+
+Access principles:
+- Deny by default; grant only necessary permissions.
+- Check ownership and role on the backend for every protected request.
+- Separate authentication (who is the user) from authorization (what may they do).
+- Keep incident details, contact details, media, and live responder locations private unless specifically approved for release.
+- Use short-lived signed URLs or authenticated media endpoints for private attachments.
+- Never store plaintext passwords, access tokens, or API secrets in logs.
+- Log sensitive administrative actions.
+- Validate guest submissions, rate-limit SOS/report endpoints, and add anti-abuse controls.
+- Apply retention rules to GPS history, incident media, and personal data.
+
+Questions to resolve:
+- Who may set severity and who may override it?
+- Who may create or edit official blotter records?
+- Who may assign/reassign responders?
+- May residents see live responder positions, or only progress/ETA?
+- Are hydrant pins public, responder-only, or staff-only?
+- Who may export reports and view sensitive attachments?
+- How are guest reports linked to follow-up without a permanent account?
+- What data retention and consent notices are required?
+
+This document is a proposal, not a finalized legal or barangay policy.

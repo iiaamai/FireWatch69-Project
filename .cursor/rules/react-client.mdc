@@ -1,0 +1,13 @@
+---
+description: Officials web app (client/) conventions and UI scope
+globs: client/**/*
+alwaysApply: false
+---
+
+# React client (officials web)
+
+- **Scope**: Barangay officials web features in `docs/features.txt` section A — dashboard, incidents, blotter, assignments, teams, hydrants, evacuation, users, notifications, logs, analytics, heatmap, account.
+- **Routes (proposal)**: `docs/routes_ui.txt` — e.g. `/login`, `/dashboard`, `/incidents`, `/incidents/:incidentId`, `/blotter`, `/teams`, `/hydrants`, `/evacuation-centers`, `/analytics`, `/heatmap`, `/account`.
+- **Stack in repo**: React + JavaScript (ES modules) + Vite under `client/` (`.jsx` entrypoints). Extend existing structure (`src/App.jsx`, `main.jsx`); do not introduce TypeScript unless the user explicitly changes stack policy (`docs/tech_stack.txt`).
+- **API**: Call backend under `/api/v1` when `server/` exists; handle loading, empty, and error states; do not rely on UI-only hiding for restricted data.
+- **Maps/charts**: Mapbox and Recharts when those features are built — confirm Mapbox SDK and pricing before locking provider (`docs/tech_stack.txt`).
