@@ -1,0 +1,33 @@
+FIREWATCH 69 — RESIDENT MOBILE SCREENS
+=======================================
+
+Implemented (Magic Pattern resident UI, Flutter)
+------------------------------------------------
+login          Sign in / continue as guest
+home           Verified home or guest home
+map            Placeholder map, fire/evac chips, SOS
+alerts         Nearby fires (verified tab)
+reports        My reports (verified tab)
+profile        Account + mock permissions (verified)
+myReport       Guest active/empty report
+detail         Incident detail (?id)
+tracking       Team tracking placeholder (no live GPS)
+report         SOS: locating → confirm → video placeholder → sent
+
+Bottom nav
+----------
+Verified: Home, Map, Alerts, My Reports, Profile
+Guest:    Home, Map, My Report
+
+docs/routes_ui.txt (proposal) vs implemented
+--------------------------------------------
+Login / guest entry     login (combined)
+Home                    home
+Report / SOS            report
+Map                     map (placeholder)
+Incident details        detail
+My reports              reports / myReport
+Alerts                  alerts
+Profile                 profile
+Assigned incidents      responder app only
+Hydrant details         not in this drop

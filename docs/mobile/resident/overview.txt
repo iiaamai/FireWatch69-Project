@@ -1,0 +1,31 @@
+FIREWATCH 69 — RESIDENT MOBILE (LAYER B)
+=======================================
+
+Flutter app: mobile/resident_mobile/. Registered resident + guest (features.txt C + D).
+Adapted from Magic Pattern resident ERRS prototype. Dart only.
+
+Auth
+----
+MockAuthService + mockResidentLogin (8+ character password). Magic Pattern
+startAs / auto sign-in is not used. Seed resident: Maricel Dizon
+(maricel.dizon@example.invalid), aligned with client/src/data/seed/users.seed.js.
+
+Data
+----
+lib/data/seed_data.dart uses FireWatch incident codes (FW69-2026-*) and
+stable ids matching client seeds. ResidentAppState holds in-memory mock CRUD
+(submit SOS report). Not the live API (Layer C).
+
+Theming
+-------
+lib/constants.dart (Fw69Colors, Fw69Fonts, Fw69Theme.light()) per brand_kit.txt.
+Prototype Inter / JetBrains Mono were not adopted.
+
+Placeholders
+------------
+Map screens show "Map coming soon" plus a legend. SOS video is a placeholder.
+No GPS tick, moving responders, or live camera simulation.
+
+Not in this UI
+--------------
+Hydrant pins, FCM push, Mapbox. Guest abuse/rate limits are API concerns (Layer A/C).
