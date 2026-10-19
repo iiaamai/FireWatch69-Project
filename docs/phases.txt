@@ -1,6 +1,15 @@
 FIREWATCH 69 — DEVELOPMENT PHASES
 ==================================
 
+Delivery style (see development_notes.txt — Layers A–D):
+  A) Server first (API + tests per slice)
+  B) Basic CRUD UIs on client/, resident_mobile, responder_mobile using mock/fixture data
+  C) Integrate all three clients with the FireWatch Express API
+  D) Later: external services (Mapbox, FCM, media storage, email, full Socket.IO) — Phase 6+
+
+Phases below describe scope; within each phase repeat A → B → C for each feature before advancing.
+Layer D is not a substitute for Layer C (clients must talk to your API before relying on third-party APIs).
+
 Phase 0 — Validation and setup
 - Confirm stakeholders, official workflow, severity definitions, blotter requirements, and project boundary (Barangay 69).
 - Confirm data availability for historical incidents, hydrants, evacuation centers, and risk factors.
@@ -8,38 +17,40 @@ Phase 0 — Validation and setup
 - Create repository, coding conventions, environments, and initial diagrams.
 
 Phase 1 — Foundation
-- Set up React + Vite web app, Express API, Flutter app, MongoDB/Mongoose.
-- Configure error handling, logging, input validation, CORS, environment variables, and tests.
-- Create User model, authentication, role/permission middleware.
+- Server: Express API, MongoDB/Mongoose, error handling, logging, input validation, CORS, env, API tests.
+- User model, JWT authentication, role/permission middleware (requireAuth, requireRoles).
+- Client scaffolds: React + Vite (client/), Flutter (mobile/resident_mobile, mobile/responder_mobile).
+- Optional UI in this phase: login and shell screens using mocks only; integrate auth to API when ready.
 
 Phase 2 — Incident core
-- Implement Incident, BlotterRecord, IncidentEvent, Team, Assignment.
-- Build incident creation, review, severity assessment, assignment, status transitions, and history.
-- Test end-to-end from resident/staff report to responder update.
+- Backend: Incident, BlotterRecord, IncidentEvent, Team, Assignment; transitions and history per lifecycle.txt.
+- Web (mock then integrate): incident queue, detail, and staff actions in client/ against fixtures, then API.
+- Mobile (mock then integrate): report flow (resident_mobile), assigned incident updates (responder_mobile), then API.
+- Test end-to-end from resident/staff report to responder update on the live API (at least one client path).
 
 Phase 3 — Administrative web
-- Dashboard and incident queue
-- Team and user management
-- Blotter/documentation views
-- Evacuation center and hydrant management
-- Activity logs and initial reports
+- Backend APIs for teams, users (extend), blotter views, hydrants, evacuation centers, activity logs, reports.
+- client/: dashboard, incident queue, management screens — fixtures first, then integrate per slice.
+- Items: dashboard and incident queue; team and user management; blotter/documentation views;
+  evacuation center and hydrant management; activity logs and initial reports.
 
 Phase 4 — Responder mobile
-- Login, assigned incidents, details, response status
-- GPS permission and location update policy
-- Map layers and hydrant navigation handoff
-- Team coordination and reinforcement request
+- Backend: endpoints needed for dispatch, status, location policy (as agreed with stakeholders).
+- responder_mobile: screens with fixtures, then integrate — login, assigned incidents, details, response status;
+  GPS permission and location update policy; map layers and hydrant navigation handoff;
+  team coordination and reinforcement request.
 
 Phase 5 — Resident mobile experiences
-- Registered resident reporting and own reports
-- Guest reporting and abuse prevention
-- Public map layers and permitted status updates
-- Alerts and notifications
+- Backend: guest/resident reporting, rate limits, and public-field APIs as per document_acl.txt.
+- resident_mobile: fixtures then integrate — registered resident reporting and own reports;
+  guest reporting and abuse prevention; public map layers and permitted status updates;
+  alerts and notifications.
 
-Phase 6 — Real-time and analytics
-- Socket.IO events and authorized rooms
+Phase 6 — Real-time, external services, and analytics (development_notes.txt Layer D)
+- Wire third-party and infrastructure beyond core REST: Mapbox, FCM, media storage as needed
+- Socket.IO events and authorized rooms (live channel; API/DB remain source of truth)
 - FCM push notifications
-- Incident history charts and map heatmap
+- Incident history charts and map heatmap (real map/analytics providers where applicable)
 - Risk analytics only after data quality and methodology are agreed
 
 Phase 7 — Testing and deployment
@@ -50,4 +61,5 @@ Phase 7 — Testing and deployment
 - User acceptance testing and documentation
 - Deploy to a chosen host with production secrets and access controls
 
-Deliver in small increments. Each phase should finish with a working, testable feature rather than only UI mockups.
+Deliver in small increments. Each phase should finish with a working, testable feature on the API;
+mock-only UI is acceptable mid-phase, but integration to the API should follow before moving to the next slice.

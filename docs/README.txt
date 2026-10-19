@@ -3,7 +3,8 @@ FIREWATCH 69 — DEVELOPMENT NOTES PACKAGE
 
 Contents:
 - model/: suggested Mongoose model notes, one .txt file per model
-- development_notes.txt
+- development_notes.txt (delivery Layers A–D: server → mock CRUD UIs → API integration → external services)
+- phases.txt (feature phases; each slice uses A→B→C; Phase 6 = Layer D)
 - document_acl.txt
 - email_events.txt
 - entity_relationships.txt
@@ -11,7 +12,6 @@ Contents:
 - features.txt
 - lifecycle.txt
 - permissions_matrix.txt
-- phases.txt
 - routes_ui.txt
 - seed_plan.txt
 - tech_stack.txt

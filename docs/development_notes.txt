@@ -46,7 +46,44 @@ Suggested repository layout:
     - utils/
   - tests/
 - docs/
-- .env.example
+- server/.env.example (copy to server/.env; never commit secrets)
+
+Development approach (summary):
+Across the project, delivery follows four layers. Repeat steps 1–3 per feature slice (auth, incidents, etc.):
+
+  Layer A — Server first (server/)
+  Layer B — Client UIs with mock data (client/, resident_mobile, responder_mobile)
+  Layer C — Integrate all three clients with the FireWatch API (same MongoDB-backed Express app)
+  Layer D — Integrate external services (maps, push, media storage, email) when those features ship
+
+Layer A — Backend first (per slice)
+- Implement Mongoose models, validators, routes, and controllers under /api/v1.
+- Add automated API integration tests (server/tests/).
+- Authorization and business rules live only on the API.
+- MongoDB is required infrastructure for the API from Phase 1 onward (local or hosted).
+
+Layer B — Basic CRUD UIs with mock data (no live API yet for that slice)
+- client/ (officials web): list/create/read/update/delete flows, routing, loading/empty/error states.
+  Use fixtures/mocks that match the API response shape (e.g. client/src/mocks/ or a service layer
+  with mock and real implementations). Dev flag: VITE_USE_MOCK (and VITE_API_URL when integrating).
+- mobile/resident_mobile: same pattern — mock repositories / local JSON; resident + guest flows (features.txt C + D).
+- mobile/responder_mobile: same pattern; responder flows (features.txt B).
+- “CRUD” here means UI and client-side state against sample data, not HTTP to the server yet.
+
+Layer C — Integrate client + both mobile apps with the server
+- Point all three apps at the API base URL; JWT login, secure token storage, CORS (WEB_ORIGIN).
+- Swap mock services for HTTP clients slice by slice; keep mocks behind a flag for demos if useful.
+- Do not treat hidden UI as security; mirror server permissions for display only.
+- A slice is demo-ready on the API only after Layer C for that slice (or explicit API-only E2E tests).
+
+Layer D — External APIs and services (later; mostly Phase 6+)
+- Integrate after Layer C for the related product feature, not before wiring clients to Express:
+  Mapbox (web/Flutter public tokens), Firebase/FCM (push), object storage (attachments),
+  optional email provider, enhanced Socket.IO rooms (live updates; MongoDB remains source of truth).
+- UI may use placeholder maps/notifications until Layer D; backend incident/auth data uses Layer A/C.
+
+Deliver backend + tests (Layer A) before relying on mock UI (Layer B) for the same slice.
+Finish Layer C before moving to the next slice. Layer D is phased (see phases.txt Phase 6).
 
 Development conventions:
 - Use environment variables for secrets and service URLs.

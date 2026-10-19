@@ -1,17 +1,29 @@
 FIREWATCH 69 — ENVIRONMENT CHECKLIST
 ====================================
 
-Use .env.example with placeholder values only. Never commit real secrets.
+Use .env.example files with placeholder values only. Never commit real secrets.
+See server/.env.example for the current Phase 1 server template.
 
-Backend variables to consider:
+When to configure (delivery layers — development_notes.txt):
+- Layer A/C (FireWatch API): server/.env — MongoDB, JWT, CORS, PORT (npm run dev and client integration).
+- Layer B (mock UI): usually no API secrets; optional client/.env for VITE_USE_MOCK and VITE_API_URL.
+- Layer D (external services): Mapbox, Firebase, storage, email when implementing Phase 6 features.
+
+Backend (server/) — Phase 1 (use now):
 - NODE_ENV=development
 - PORT=3000
 - MONGODB_URI=
 - JWT_ACCESS_SECRET=
-- JWT_REFRESH_SECRET= (if refresh tokens are implemented)
-- WEB_ORIGIN=
+- JWT_ACCESS_EXPIRES_IN= (optional; default 1h)
+- WEB_ORIGIN= (comma-separated; e.g. http://localhost:5173)
+- LOG_LEVEL=info
+- SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD, SEED_ADMIN_NAME (npm run seed:admin only)
+- ALLOW_PROD_SEED= (only if seeding with NODE_ENV=production)
+
+Backend (server/) — later phases:
+- JWT_REFRESH_SECRET= (if refresh tokens are implemented; not Phase 1)
 - MOBILE_DEEP_LINK_SCHEME= (if needed)
-- MAPBOX_TOKEN_SERVER_SIDE= (only if a server-side token is needed; use restricted public tokens in clients)
+- MAPBOX_TOKEN_SERVER_SIDE= (only if a server-side token is needed)
 - FIREBASE_PROJECT_ID=
 - FIREBASE_CLIENT_EMAIL=
 - FIREBASE_PRIVATE_KEY= (protect carefully; prefer a secret manager in production)
@@ -21,7 +33,14 @@ Backend variables to consider:
 - MEDIA_STORAGE_SECRET_KEY=
 - EMAIL_PROVIDER= (optional)
 - EMAIL_API_KEY= (optional)
-- LOG_LEVEL=info
+
+Web client (client/) — Layer B/C (add client/.env.example when integrating):
+- VITE_API_URL= (e.g. http://localhost:3000/api/v1)
+- VITE_USE_MOCK=true|false
+
+Mobile (Flutter) — Layer B/C and D:
+- API base URL via dart-define or config (no server secrets in apps)
+- Mapbox public token when maps ship (Layer D)
 
 Important:
 - Names are illustrative; match them to the chosen libraries and deployment platform.
