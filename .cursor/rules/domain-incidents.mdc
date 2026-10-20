@@ -10,5 +10,5 @@ alwaysApply: false
 - **Models**: Cross-check `docs/model/incident.txt`, `incident_event.txt`, `assignment.txt`, `blotter_record.txt`, `incident_attachment.txt` and relationships in `docs/entity_relationships.txt`.
 - **History**: One incident → many assignments (dispatch/reassignment history); many events; optional blotter 0–1 per incident — confirm official blotter workflow before coding numbering rules.
 - **Rules**: Do not assume every incident needs identical workflow or a formal blotter. Reassign and reinforcement must preserve prior assignment history.
-- **API shape (illustrative)**: See `docs/routes_ui.txt` — incidents CRUD, verify, assignments, status patches, events, blotter sub-resources under `/api/v1`.
+- **API shape (illustrative)**: See `docs/routes_ui.txt` — incidents CRUD, verify, assignments, status patches, events, blotter sub-resources under `/api`.
 - **Real-time**: Emit Socket.IO updates after persisting state; clients must tolerate reconnect and fetch authoritative state from the API.

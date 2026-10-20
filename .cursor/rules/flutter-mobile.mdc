@@ -12,3 +12,4 @@ alwaysApply: false
 - **API**: Same backend as web (`server/`); enforce permissions server-side (`docs/permissions_matrix.txt`). Mapbox and FCM only after requirements are confirmed (`docs/tech_stack.txt`).
 - **Screens (proposal)**: `docs/routes_ui.txt` mobile section — login/guest entry, home, report/SOS, map, assigned incidents (responder), alerts, profile.
 - Match each app’s existing Flutter structure; no shared package until explicitly added. Dart only on mobile unless the user changes stack policy.
+- **Theming**: Colors and placeholder fonts in `docs/brand_kit.txt`. Each app: `lib/constants.dart` (`Fw69Colors`, `Fw69Fonts`, `Fw69Theme.light()`). Use theme text styles / `Fw69Colors` — no ad hoc fonts or `ColorScheme.fromSeed`. Keep both apps’ `constants.dart` in sync. Light mode only for MVP.

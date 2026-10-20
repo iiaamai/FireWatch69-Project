@@ -8,6 +8,7 @@ Delivery style (see development_notes.txt — Layers A–D):
   D) Later: external services (Mapbox, FCM, media storage, email, full Socket.IO) — Phase 6+
 
 Phases below describe scope; within each phase repeat A → B → C for each feature before advancing.
+Per app order for Layer B/C: officials web (client/) → resident_mobile → responder_mobile (see development_notes.txt).
 Layer D is not a substitute for Layer C (clients must talk to your API before relying on third-party APIs).
 
 Phase 0 — Validation and setup

@@ -21,14 +21,14 @@ beforeEach(async () => {
 async function loginAs(overrides) {
   const { password } = await createTestUser(overrides);
   const res = await request(app)
-    .post('/api/v1/auth/login')
+    .post('/api/auth/login')
     .send({ email: overrides.email, password });
   return res.body.data.accessToken;
 }
 
 test('creating a user requires authentication', async () => {
   const res = await request(app)
-    .post('/api/v1/users')
+    .post('/api/users')
     .send({
       fullName: 'New User',
       email: 'new@example.com',
@@ -44,7 +44,7 @@ test('a non-admin cannot create a user', async () => {
     role: ROLES.RESPONDER,
   });
   const res = await request(app)
-    .post('/api/v1/users')
+    .post('/api/users')
     .set('Authorization', `Bearer ${token}`)
     .send({
       fullName: 'New User',
@@ -61,7 +61,7 @@ test('a system_admin can create a user', async () => {
     role: ROLES.SYSTEM_ADMIN,
   });
   const res = await request(app)
-    .post('/api/v1/users')
+    .post('/api/users')
     .set('Authorization', `Bearer ${token}`)
     .send({
       fullName: 'New Responder',
@@ -87,13 +87,13 @@ test('creating a duplicate email returns 409', async () => {
     role: ROLES.RESPONDER,
   };
   const first = await request(app)
-    .post('/api/v1/users')
+    .post('/api/users')
     .set('Authorization', `Bearer ${token}`)
     .send(payload);
   assert.equal(first.status, 201);
 
   const second = await request(app)
-    .post('/api/v1/users')
+    .post('/api/users')
     .set('Authorization', `Bearer ${token}`)
     .send(payload);
   assert.equal(second.status, 409);
@@ -105,7 +105,7 @@ test('create user validation rejects a short password', async () => {
     role: ROLES.SYSTEM_ADMIN,
   });
   const res = await request(app)
-    .post('/api/v1/users')
+    .post('/api/users')
     .set('Authorization', `Bearer ${token}`)
     .send({
       fullName: 'Short Pw',
@@ -122,7 +122,7 @@ test('an admin can list users', async () => {
     role: ROLES.SYSTEM_ADMIN,
   });
   const res = await request(app)
-    .get('/api/v1/users')
+    .get('/api/users')
     .set('Authorization', `Bearer ${token}`);
   assert.equal(res.status, 200);
   assert.ok(Array.isArray(res.body.data.users));

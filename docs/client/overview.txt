@@ -1,0 +1,37 @@
+FIREWATCH 69 — OFFICIALS WEB (CLIENT) OVERVIEW
+==============================================
+
+Layer B product UI for barangay officials, adapted from the Magic Pattern ERRS
+prototype. JavaScript ESM only (no TypeScript). Entry: client/src/main.jsx.
+
+Auth (kept)
+-----------
+JWT mock/live login via AuthProvider (client/src/context/AuthContext.jsx),
+useAuth, and authService. Magic Pattern startSignedIn / fake sign-in is not used.
+contexts/AuthContext.jsx is a thin adapter (signIn/signOut aliases) so prototype
+screens can call the existing session.
+
+Data
+----
+AppDataProvider loads Layer B fixtures from client/src/data/seed/* (API-shaped
+records per docs/model/*.txt) and maps them to UI view models in
+buildMockStore.js. Canonical demo entities use stable seed ObjectIds and
+FW69-2026-* incident codes; map positions are derived from fictional GeoJSON
+coordinates. This is mock CRUD only, not the live API (Layer C).
+
+Theming
+-------
+Brand tokens stay in client/src/index.css (@theme + :root) per docs/brand_kit.txt.
+Prototype Inter / IBM Plex / Tailwind v3 @import 'tailwindcss/base' were not
+adopted. Canvas/ink aliases map to the same neutrals. Component classes
+(.eyebrow, .panel, .chip, table helpers) live in index.css.
+
+Prototype extras
+----------------
+useScreenInit.js + canvas.manifest.js support ?mp_screen= deep links from the
+Magic Pattern canvas. They are optional and do not replace routing.
+
+Not in this UI (see docs/routes_ui.txt)
+---------------------------------------
+Blotter, assignments, and hydrants pages are not in the Magic Pattern dump.
+Severity label "moderate" in the prototype is the same band as planned "medium".

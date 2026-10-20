@@ -1,0 +1,32 @@
+FIREWATCH 69 — LAYOUTS AND NAVIGATION
+=====================================
+
+Unauthenticated
+---------------
+Login is a two-column marketing/form layout (ErrsLogo branding). No sidebar.
+
+Authenticated shell (AppShell)
+------------------------------
+- Fixed left sidebar (collapses on desktop; drawer on small screens)
+- Sticky top bar: page title, live clock, active-fire shortcut, notification bell
+- Main outlet for the current route
+
+Sidebar groups (data/navigation.js)
+-----------------------------------
+Operations: Dashboard, Manage Fire Incidents, Track Responders
+Resources:  Team Management, Evacuation Centers
+Insights:   Fire Incident History, Analytics & Reports, Heatmap
+System:     Notifications, Activity Logs, Manage Users, Account
+
+Badges: active (unresolved) incident count on Incidents; unread count on
+Notifications. Sign out is in the sidebar footer (clears JWT session).
+
+Page patterns
+-------------
+Tables use .table-head / .table-cell. Cards use .panel. Status chips use
+StatusPill + utils/status.js. Maps are schematic SVG (IncidentMap), not Mapbox.
+Drawers/dialogs are local primitives (not Radix).
+
+Logo copy
+---------
+Prototype still says ERRS in the mark. Product name is FireWatch 69.

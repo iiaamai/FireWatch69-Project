@@ -1,0 +1,44 @@
+FIREWATCH 69 — IMPLEMENTED WEB ROUTES
+=====================================
+
+Implemented (Magic Pattern officials UI)
+----------------------------------------
+/login              Sign in (existing auth)
+/                   Dashboard (home; not /dashboard)
+/incidents          Manage fire incidents (?id=, ?tab=overview|media|timeline)
+/responders         Track responders (?team=, ?incident=)
+/teams              Team management
+/evacuation         Evacuation centers
+/history            Fire incident history
+/analytics          Analytics & reports
+/heatmap            Fire incident heatmap
+/notifications      Notification history
+/logs               Activity logs
+/users              Manage users
+/account            Current user profile
+
+Unknown routes redirect to / when authenticated, else /login.
+
+docs/routes_ui.txt (proposal) vs implemented
+--------------------------------------------
+Proposal                  Implemented
+/login                    /login
+/dashboard                /  (dashboard is home)
+/incidents                /incidents
+/incidents/:incidentId    /incidents?id=  (query, not path param)
+/blotter                  not in prototype
+/assignments              not in prototype
+/responders               /responders
+/teams                    /teams
+/evacuation-centers       /evacuation
+/hydrants                 not in prototype
+/incident-history         /history
+/users                    /users
+/notifications            /notifications
+/activity-logs            /logs
+/analytics                /analytics
+/heatmap                  /heatmap
+/account                  /account
+
+Authority: documented proposal remains docs/routes_ui.txt. This file records
+what the React app actually mounts.

@@ -33,7 +33,7 @@ Mobile (Flutter) screen ideas:
 - My reports (registered resident)
 - Profile and permissions
 
-API route groups (illustrative; version under /api/v1):
+API route groups (illustrative; base path /api, no URL version segments):
 - POST /auth/login
 - POST /auth/refresh (if refresh-token design is adopted)
 - POST /auth/logout

@@ -46,7 +46,14 @@ Suggested repository layout:
     - utils/
   - tests/
 - docs/
+  - brand_kit.txt   Product color tokens (web + mobile)
 - server/.env.example (copy to server/.env; never commit secrets)
+
+UI theming:
+- Palette, placeholder fonts, and severity alert colors: docs/brand_kit.txt
+- Officials web: client/src/index.css (@theme + CSS variables); Tailwind utilities reference the same tokens
+- Flutter (each app): lib/constants.dart (Fw69Colors, Fw69Fonts, Fw69Theme.light())
+- Do not hardcode hex or font-family in screens/components outside those entry files
 
 Development approach (summary):
 Across the project, delivery follows four layers. Repeat steps 1–3 per feature slice (auth, incidents, etc.):
@@ -57,7 +64,7 @@ Across the project, delivery follows four layers. Repeat steps 1–3 per feature
   Layer D — Integrate external services (maps, push, media storage, email) when those features ship
 
 Layer A — Backend first (per slice)
-- Implement Mongoose models, validators, routes, and controllers under /api/v1.
+- Implement Mongoose models, validators, routes, and controllers under /api (no /v1 path versioning).
 - Add automated API integration tests (server/tests/).
 - Authorization and business rules live only on the API.
 - MongoDB is required infrastructure for the API from Phase 1 onward (local or hosted).
@@ -84,6 +91,16 @@ Layer D — External APIs and services (later; mostly Phase 6+)
 
 Deliver backend + tests (Layer A) before relying on mock UI (Layer B) for the same slice.
 Finish Layer C before moving to the next slice. Layer D is phased (see phases.txt Phase 6).
+
+Brick-by-brick (per feature module, e.g. Auth):
+1. Layer A once on server/ (API + tests for that module).
+2. Layer B on client/ (mock UI + fixtures matching API shape).
+3. Layer C on client/ (wire that app to /api).
+4. Layer B on mobile/resident_mobile, then Layer C on resident_mobile.
+5. Layer B on mobile/responder_mobile, then Layer C on responder_mobile.
+6. Start the next feature module (e.g. Incidents) with Layer A on server again.
+
+UI reference images can refine Layer B screens; keep mock JSON aligned with server responses for Layer C.
 
 Development conventions:
 - Use environment variables for secrets and service URLs.

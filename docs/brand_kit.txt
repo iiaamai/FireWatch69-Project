@@ -1,0 +1,98 @@
+FIREWATCH 69 — BRAND KIT (COLORS)
+===================================
+
+Source of truth for product UI colors across officials web (client/) and
+resident/responder Flutter apps. Implementation entry points:
+
+- Web: client/src/index.css (CSS custom properties + Tailwind @theme)
+- Flutter: lib/constants.dart in each mobile app (duplicate same values)
+
+Light mode only for MVP; token names should stay stable if dark mode is added later.
+
+Do not use one-off hex in screens/components — use these token names in code.
+
+
+PRIMARY FAMILY
+--------------
+Token              Hex       Notes
+primary            #dc2626   Brand red; primary actions, key accents
+primary-tint-1     #e35151   Lighter (mix toward white)
+primary-tint-2     #e76767   Lighter
+primary-shade-1    #b01e1e   Darker (mix toward black)
+primary-shade-2    #9a1b1b   Darker
+primary-tone-1     #CE4538   Muted / desaturated primary
+primary-tone-2     #BE5949   Muted / desaturated primary
+
+
+NEUTRALS (MINIMAL)
+------------------
+Token                  Hex       Usage
+neutral-bg             #f5f5f7   Page background below white containers
+neutral-surface        #ffffff   Cards, panels, inputs on white
+neutral-text           #111827   Primary body text and headings
+neutral-text-muted     #374151   Secondary copy, labels
+neutral-active         #111827   Active sidebar/nav, dark button backgrounds
+neutral-on-dark        #ffffff   Text and icons on neutral-active surfaces
+
+neutral-border         #d1d5db   Default borders and dividers (aligns with
+                                 alert-low border; change only via this kit)
+
+#111827 is used for both primary text and active/dark fills — use token names
+in UI, not the raw hex twice with different meanings.
+
+
+ALERT / SEVERITY (SEMANTIC)
+---------------------------
+Separate from brand primary. Use for incident severity, banners, badges.
+
+Level      Background  Border    Text
+critical   #fef2f2     #fca5a5   #991b1b
+high       #fff7ed     #fdba74   #9a3412
+medium     #fffbeb     #fcd34d   #95400e
+low        #f9fafb     #d1d5db   #374151
+
+Suggested code tokens (web CSS / Flutter constants):
+  alert-critical-bg, alert-critical-border, alert-critical-text
+  alert-high-bg, alert-high-border, alert-high-text
+  alert-medium-bg, alert-medium-border, alert-medium-text
+  alert-low-bg, alert-low-border, alert-low-text
+
+Low alert text (#374151) matches neutral-text-muted — one constant may be shared.
+
+
+TYPOGRAPHY (PLACEHOLDER)
+------------------------
+Final brand font TBD. Change only in client/src/index.css and lib/constants.dart
+(per app) unless this section is updated.
+
+Officials web (client/src/index.css):
+  --font-family   Universal alias (same as --font-sans for now)
+  --font-sans     Aptos, 'Segoe UI', Roboto, system-ui, sans-serif
+  --font-heading  Same stack as --font-sans (split token for future swap)
+  --font-mono     ui-monospace, Consolas, 'Roboto Mono', monospace
+  Delivery: CSS font stack only (no webfont download). Aptos appears when
+  installed on the device (e.g. Windows); otherwise Segoe UI / Roboto / system.
+
+Flutter (lib/constants.dart, each app):
+  Fw69Fonts — Roboto via google_fonts package as mobile placeholder until brand
+  font is bundled or chosen. Web CSS stack documented in Fw69Fonts.webCssStackReference.
+
+Use theme text styles / var(--font-sans) — do not hardcode font-family in screens.
+
+
+TINT / SHADE / TONE (DEFINITIONS)
+---------------------------------
+- Tint: lighter than primary (toward white)
+- Shade: darker than primary (toward black)
+- Tone: muted / desaturated variants of primary
+
+
+IMPLEMENTATION (WHEN WIRING UI)
+---------------------------------
+- Officials web: map all tokens in client/src/index.css; Tailwind utilities
+  reference the same names (no duplicate hex in JSX/CSS modules).
+- Flutter: Fw69Colors (or equivalent) in lib/constants.dart per app; build
+  ThemeData / ColorScheme from constants — avoid ColorScheme.fromSeed for
+  product chrome.
+- Cursor rules (react-client, flutter-mobile) and development_notes.txt
+  should reference this file for theming policy.

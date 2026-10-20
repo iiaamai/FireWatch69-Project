@@ -2,6 +2,8 @@ FIREWATCH 69 — DEVELOPMENT NOTES PACKAGE
 =========================================
 
 Contents:
+- brand_kit.txt (product colors — primary, neutrals, alert severity)
+- client/: officials web UI notes (overview, routes/pages, layouts/navigation)
 - model/: suggested Mongoose model notes, one .txt file per model
 - development_notes.txt (delivery Layers A–D: server → mock CRUD UIs → API integration → external services)
 - phases.txt (feature phases; each slice uses A→B→C; Phase 6 = Layer D)
